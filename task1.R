@@ -14,8 +14,7 @@ activity = data[data$variable=="activity",]
 screen = data[data$variable=="screen",]
 call = data[data$variable=="call",]
 sms = data[data$variable=="sms",]
-games = data[data$variable=="appCat.game",]
-entertainments = data[data$variable=="appCat.entertainment",]
+
 
 
 # QQ plots
@@ -26,16 +25,33 @@ qqnorm(arousal$value)
 shapiro.test(moods[1:5000,]$value)
 
 
-# Plots
+# Plots of the variables
 plot(moods$value)
 plot(arousal$value)
-plot(games$value) # couple of outliers
-plot(entertainments$value) # outliers
 plot(valences$value) # valence score
 plot(activity$value) # Activity score between 0 and 1
 plot(screen$value) # Duration of screen activity
 plot(call$value) # call at certain time
 plot(sms$value) # sms at certain time
+
+#### App categories
+plot(data[data$variable=="appCat.game",]$value) # couple of outliers
+plot(data[data$variable=="appCat.entertainment",]$value) # outliers
+plot(data[data$variable=="appCat.builtin",]$value) # outlier
+plot(data[data$variable=="appCat.communication",]$value) # outlier
+plot(data[data$variable=="appCat.finance",]$value)
+plot(data[data$variable=="appCat.office",]$value) # outlier
+plot(data[data$variable=="appCat.other",]$value) # sort of outliers
+plot(data[data$variable=="appCat.social",]$value) # outlier
+plot(data[data$variable=="appCat.travel",]$value) # outlier
+plot(data[data$variable=="appCat.unknown",]$value) # outliers
+plot(data[data$variable=="appCat.utilities",]$value) # strange outliers
+plot(data[data$variable=="appCat.weather",]$value) # outlier
+
+# Clean the data and remove outliers
+# Outliers lay mostly in the appCat data
+
+
 
 
 # Correlation test between mood and arousal
