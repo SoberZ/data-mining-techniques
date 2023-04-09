@@ -1,6 +1,4 @@
 
-
-
 data <- read.csv("dataset_mood_smartphone.csv", header=TRUE)
 
 all_ids = unique(data$id)
@@ -19,6 +17,7 @@ sms = data[data$variable=="sms",]
 games = data[data$variable=="appCat.game",]
 entertainments = data[data$variable=="appCat.entertainment",]
 
+
 # QQ plots
 qqnorm(moods$value)
 qqnorm(arousal$value)
@@ -26,16 +25,21 @@ qqnorm(arousal$value)
 # Shapiro wilk
 shapiro.test(moods[1:5000,]$value)
 
+
 # Plots
 plot(moods$value)
 plot(arousal$value)
 plot(games$value) # couple of outliers
 plot(entertainments$value) # outliers
+plot(valences$value) # valence score
+plot(activity$value) # Activity score between 0 and 1
+plot(screen$value) # Duration of screen activity
+plot(call$value) # call at certain time
+plot(sms$value) # sms at certain time
 
 
-# Correlation test
+# Correlation test between mood and arousal
 arousal_which = which(is.na(arousal$value))
-arousal[arousal_which, ]
 
 arousal_clean = na.omit(arousal)
 moods_clean = na.omit(moods)
@@ -57,9 +61,6 @@ cor.test(moods_clean$value, arousal_clean[1:5641,]$value)
 #  cor 
 # 0.01614322 
 
-
-#dim(games)
-#cor.test(moods_clean$value, )
 
 boxplot(moods_clean$value)
 
